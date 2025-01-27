@@ -17,14 +17,12 @@ class LivestreamEndScreen extends StatefulWidget {
   State<LivestreamEndScreen> createState() => _LivestreamEndScreenState();
 }
 
-class _LivestreamEndScreenState extends State<LivestreamEndScreen>
-    with TickerProviderStateMixin {
+class _LivestreamEndScreenState extends State<LivestreamEndScreen> with TickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
     duration: const Duration(seconds: 1),
     vsync: this,
   );
-  late final Animation<double> _animation =
-      CurvedAnimation(parent: _controller, curve: Curves.fastOutSlowIn);
+  late final Animation<double> _animation = CurvedAnimation(parent: _controller, curve: Curves.fastOutSlowIn);
   SessionManager pref = SessionManager();
 
   String time = '';
@@ -70,11 +68,7 @@ class _LivestreamEndScreenState extends State<LivestreamEndScreen>
                         return ImagePlaceHolder(
                           fontSize: 100,
                           heightWeight: MediaQuery.of(context).size.width / 2.5,
-                          name: Provider.of<MyLoading>(context)
-                                  .getUser
-                                  ?.data
-                                  ?.fullName ??
-                              '',
+                          name: Provider.of<MyLoading>(context).getUser?.data?.fullName ?? '',
                         );
                       },
                     )),
@@ -82,8 +76,7 @@ class _LivestreamEndScreenState extends State<LivestreamEndScreen>
                   scale: _animation,
                   child: Text(
                     LKey.yourLiveStreamHasEtc.tr,
-                    style:
-                        TextStyle(fontFamily: FontRes.fNSfUiBold, fontSize: 18),
+                    style: TextStyle(fontFamily: FontRes.fNSfUiBold, fontSize: 18),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -96,15 +89,11 @@ class _LivestreamEndScreenState extends State<LivestreamEndScreen>
                           sizeFactor: _animation,
                           axis: Axis.horizontal,
                           axisAlignment: -1,
-                          child: Text('$time',
-                              style: const TextStyle(
-                                  fontFamily: FontRes.fNSfUiSemiBold,
-                                  fontSize: 15)),
+                          child: Text('$time', style: const TextStyle(fontFamily: FontRes.fNSfUiSemiBold, fontSize: 15)),
                         ),
                         Text(
                           LKey.streamFor.tr,
-                          style: TextStyle(
-                              fontFamily: FontRes.fNSfUiSemiBold, fontSize: 15),
+                          style: TextStyle(fontFamily: FontRes.fNSfUiSemiBold, fontSize: 15),
                         ),
                       ],
                     ),
@@ -114,15 +103,11 @@ class _LivestreamEndScreenState extends State<LivestreamEndScreen>
                           sizeFactor: _animation,
                           axis: Axis.horizontal,
                           axisAlignment: -1,
-                          child: Text('$watching',
-                              style: const TextStyle(
-                                  fontFamily: FontRes.fNSfUiSemiBold,
-                                  fontSize: 15)),
+                          child: Text('$watching', style: const TextStyle(fontFamily: FontRes.fNSfUiSemiBold, fontSize: 15)),
                         ),
                         Text(
                           LKey.users.tr,
-                          style: TextStyle(
-                              fontFamily: FontRes.fNSfUiSemiBold, fontSize: 15),
+                          style: TextStyle(fontFamily: FontRes.fNSfUiSemiBold, fontSize: 15),
                         ),
                       ],
                     ),
@@ -132,23 +117,18 @@ class _LivestreamEndScreenState extends State<LivestreamEndScreen>
                           sizeFactor: _animation,
                           axis: Axis.horizontal,
                           axisAlignment: -1,
-                          child: Text('$diamond',
-                              style: const TextStyle(
-                                  fontFamily: FontRes.fNSfUiSemiBold,
-                                  fontSize: 15)),
+                          child: Text('$diamond', style: const TextStyle(fontFamily: FontRes.fNSfUiSemiBold, fontSize: 15)),
                         ),
                         Text(
                           '💎 ${LKey.collected.tr}',
-                          style: TextStyle(
-                              fontFamily: FontRes.fNSfUiSemiBold, fontSize: 15),
+                          style: TextStyle(fontFamily: FontRes.fNSfUiSemiBold, fontSize: 15),
                         ),
                       ],
                     ),
                   ],
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 28, vertical: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 10),
                   child: InkWell(
                     borderRadius: BorderRadius.circular(10),
                     onTap: () {
@@ -159,17 +139,13 @@ class _LivestreamEndScreenState extends State<LivestreamEndScreen>
                       width: MediaQuery.of(context).size.width,
                       margin: const EdgeInsets.symmetric(vertical: 10),
                       decoration: BoxDecoration(
-                        color: ColorRes.colorTheme.withOpacity(0.13),
+                        color: ColorRes.colorTheme..withValues(alpha: 0.13),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Center(
                         child: Text(
                           LKey.ok.tr,
-                          style: TextStyle(
-                              color: ColorRes.colorPink,
-                              fontFamily: FontRes.fNSfUiHeavy,
-                              letterSpacing: 0.8,
-                              fontSize: 16),
+                          style: TextStyle(color: ColorRes.colorPink, fontFamily: FontRes.fNSfUiHeavy, letterSpacing: 0.8, fontSize: 16),
                         ),
                       ),
                     ),

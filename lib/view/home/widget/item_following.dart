@@ -57,7 +57,10 @@ class ItemFollowing extends StatelessWidget {
                 gradient: new LinearGradient(
                   end: const Alignment(0.0, -1),
                   begin: const Alignment(0.0, 0.3),
-                  colors: <Color>[ColorRes.colorPrimaryDark, ColorRes.colorPrimaryDark.withOpacity(0.0)],
+                  colors: <Color>[
+                    ColorRes.colorPrimaryDark,
+                    ColorRes.colorPrimaryDark..withValues(alpha: 0.0)
+                  ],
                 ),
                 borderRadius: BorderRadius.vertical(bottom: Radius.circular(20))),
           ),

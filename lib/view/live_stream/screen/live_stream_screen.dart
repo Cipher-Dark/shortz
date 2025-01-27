@@ -71,19 +71,11 @@ class LiveStreamScreen extends StatelessWidget {
                         RichText(
                           text: TextSpan(
                             text: '$appName ',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontFamily: FontRes.fNSfUiBold,
-                                color: !myLoading.isDark
-                                    ? ColorRes.colorPrimary
-                                    : ColorRes.greyShade100),
+                            style: TextStyle(fontSize: 20, fontFamily: FontRes.fNSfUiBold, color: !myLoading.isDark ? ColorRes.colorPrimary : ColorRes.greyShade100),
                             children: <TextSpan>[
                               TextSpan(
                                 text: '${LKey.live.tr.toUpperCase()}',
-                                style: TextStyle(
-                                    fontFamily: FontRes.fNSfUiMedium,
-                                    color: ColorRes.colorPink,
-                                    fontSize: 17),
+                                style: TextStyle(fontFamily: FontRes.fNSfUiMedium, color: ColorRes.colorPink, fontSize: 17),
                               ),
                             ],
                           ),
@@ -91,16 +83,11 @@ class LiveStreamScreen extends StatelessWidget {
                         Spacer(),
                         InkWell(
                           onTap: () {
-                            if ((model.registrationUser?.data?.followersCount ??
-                                    0) >=
-                                (model.settingData?.minFansForLive ?? 0)) {
+                            if ((model.registrationUser?.data?.followersCount ?? 0) >= (model.settingData?.minFansForLive ?? 0)) {
                               model.goLiveTap(context);
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                    content: Text(AppRes.minimumFansForLive(
-                                        model.settingData?.minFansForLive ??
-                                            0))),
+                                SnackBar(content: Text(AppRes.minimumFansForLive(model.settingData?.minFansForLive ?? 0))),
                               );
                             }
                           },
@@ -128,9 +115,7 @@ class LiveStreamScreen extends StatelessWidget {
                                 ),
                                 Text(
                                   LKey.goLive.tr,
-                                  style: TextStyle(
-                                      fontFamily: FontRes.fNSfUiSemiBold,
-                                      color: ColorRes.white),
+                                  style: TextStyle(fontFamily: FontRes.fNSfUiSemiBold, color: ColorRes.white),
                                 )
                               ],
                             ),
@@ -168,29 +153,22 @@ class CustomGridView extends StatelessWidget {
           ? Center(
               child: Text(
                 LKey.noUserLive.tr,
-                style:
-                    TextStyle(fontSize: 18, fontFamily: FontRes.fNSfUiSemiBold),
+                style: TextStyle(fontSize: 18, fontFamily: FontRes.fNSfUiSemiBold),
               ),
             )
           : Container(
               margin: EdgeInsets.all(6),
               child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 0.75,
-                      mainAxisSpacing: 5,
-                      crossAxisSpacing: 5),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: 0.75, mainAxisSpacing: 5, crossAxisSpacing: 5),
                   itemCount: model.liveUsers.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return gridTile(
-                        context: context, data: model.liveUsers[index]);
+                    return gridTile(context: context, data: model.liveUsers[index]);
                   }),
             ),
     );
   }
 
-  Widget gridTile(
-      {required LiveStreamUser data, required BuildContext context}) {
+  Widget gridTile({required LiveStreamUser data, required BuildContext context}) {
     return GestureDetector(
       onTap: () => model.onImageTap(context, data),
       child: Stack(
@@ -201,7 +179,7 @@ class CustomGridView extends StatelessWidget {
             height: double.infinity,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: Colors.grey.withOpacity(0.6),
+              color: Colors.grey..withValues(alpha: 0.6),
               borderRadius: BorderRadius.circular(20),
             ),
             child: ClipRRect(
@@ -230,7 +208,7 @@ class CustomGridView extends StatelessWidget {
               filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
               child: Container(
                 width: double.infinity,
-                color: ColorRes.colorPrimary.withOpacity(0.6),
+                color: ColorRes.colorPrimary..withValues(alpha: 0.6),
                 padding: EdgeInsets.all(8),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -255,9 +233,7 @@ class CustomGridView extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      NumberFormat.compact(locale: 'en')
-                              .format(data.followers ?? 0) +
-                          ' ${LKey.followers.tr}',
+                      NumberFormat.compact(locale: 'en').format(data.followers ?? 0) + ' ${LKey.followers.tr}',
                       style: const TextStyle(
                         color: ColorRes.white,
                         fontSize: 12,
@@ -275,8 +251,7 @@ class CustomGridView extends StatelessWidget {
                         ),
                         const SizedBox(width: 3.5),
                         Text(
-                          NumberFormat.compact(locale: 'en')
-                              .format(data.watchingCount ?? 0),
+                          NumberFormat.compact(locale: 'en').format(data.watchingCount ?? 0),
                           style: const TextStyle(
                             color: ColorRes.white,
                             fontSize: 13,

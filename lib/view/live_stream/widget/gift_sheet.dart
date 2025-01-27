@@ -18,9 +18,7 @@ class GiftSheet extends StatelessWidget {
   final Function(Gifts? gifts) onGiftSend;
   final SettingData? settingData;
 
-  const GiftSheet(
-      {Key? key, required this.onAddShortzzTap, this.user, required this.onGiftSend, required this.settingData})
-      : super(key: key);
+  const GiftSheet({Key? key, required this.onAddShortzzTap, this.user, required this.onGiftSend, required this.settingData}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +87,10 @@ class GiftSheet extends StatelessWidget {
                           gradient: LinearGradient(
                             end: Alignment.centerRight,
                             begin: Alignment.centerLeft,
-                            colors: [ColorRes.colorPink, ColorRes.colorTheme],
+                            colors: [
+                              ColorRes.colorPink,
+                              ColorRes.colorTheme
+                            ],
                           ),
                         ),
                         alignment: Alignment.center,
@@ -122,18 +123,13 @@ class GiftSheet extends StatelessWidget {
                           } else {
                             Navigator.pop(context);
                             ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                  content: Text(AppRes.insufficientDescription), behavior: SnackBarBehavior.floating),
+                              SnackBar(content: Text(AppRes.insufficientDescription), behavior: SnackBarBehavior.floating),
                             );
                           }
                         },
                         child: Container(
                           padding: EdgeInsets.all(10),
-                          foregroundDecoration: BoxDecoration(
-                              color: (gift?.coinPrice ?? 0) > (user?.data?.myWallet ?? 0)
-                                  ? ColorRes.colorPrimaryDark.withOpacity(0.7)
-                                  : Colors.transparent,
-                              borderRadius: BorderRadius.circular(10)),
+                          foregroundDecoration: BoxDecoration(color: (gift?.coinPrice ?? 0) > (user?.data?.myWallet ?? 0) ? ColorRes.colorPrimaryDark.withValues(alpha: 0.7) : Colors.transparent, borderRadius: BorderRadius.circular(10)),
                           decoration: BoxDecoration(
                             color: ColorRes.colorPrimaryDark,
                             borderRadius: BorderRadius.circular(10),
@@ -144,8 +140,7 @@ class GiftSheet extends StatelessWidget {
                             children: [
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(10),
-                                child: Image.network('${ConstRes.itemBaseUrl}${gift?.image}',
-                                    width: 50, height: 50, fit: BoxFit.cover),
+                                child: Image.network('${ConstRes.itemBaseUrl}${gift?.image}', width: 50, height: 50, fit: BoxFit.cover),
                               ),
                               SizedBox(height: 8),
                               Row(

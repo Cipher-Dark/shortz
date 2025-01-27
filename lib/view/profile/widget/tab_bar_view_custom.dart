@@ -7,9 +7,7 @@ class TabBarViewCustom extends StatefulWidget {
   final PageController pageController;
   final MyLoading myLoading;
 
-  const TabBarViewCustom(
-      {Key? key, required this.pageController, required this.myLoading})
-      : super(key: key);
+  const TabBarViewCustom({Key? key, required this.pageController, required this.myLoading}) : super(key: key);
 
   @override
   State<TabBarViewCustom> createState() => _TabBarViewCustomState();
@@ -19,9 +17,7 @@ class _TabBarViewCustomState extends State<TabBarViewCustom> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: !widget.myLoading.isDark
-          ? ColorRes.greyShade100
-          : ColorRes.colorPrimary,
+      color: !widget.myLoading.isDark ? ColorRes.greyShade100 : ColorRes.colorPrimary,
       child: Column(
         children: [
           Expanded(
@@ -46,26 +42,19 @@ class _TabBarViewCustomState extends State<TabBarViewCustom> {
                       color: widget.myLoading.isDark
                           ? widget.myLoading.getProfilePageIndex == 0
                               ? ColorRes.white
-                              : ColorRes.greyShade100.withOpacity(0.5)
+                              : ColorRes.greyShade100.withValues(alpha: 0.5)
                           : widget.myLoading.getProfilePageIndex == 0
                               ? ColorRes.colorPrimaryDark
-                              : ColorRes.colorPrimaryDark.withOpacity(0.5),
+                              : ColorRes.colorPrimaryDark.withValues(alpha: 0.5),
                     ),
                   ),
                 ),
-                Container(
-                    height: 20,
-                    width: 1,
-                    color: widget.myLoading.isDark
-                        ? ColorRes.white
-                        : ColorRes.colorPrimary),
+                Container(height: 20, width: 1, color: widget.myLoading.isDark ? ColorRes.white : ColorRes.colorPrimary),
                 Expanded(
                   child: InkWell(
                     onTap: () {
                       if (widget.pageController.hasClients) {
-                        widget.pageController.animateToPage(1,
-                            duration: Duration(milliseconds: 200),
-                            curve: Curves.linear);
+                        widget.pageController.animateToPage(1, duration: Duration(milliseconds: 200), curve: Curves.linear);
                       }
                       widget.myLoading.setProfilePageIndex(1);
                     },
@@ -75,10 +64,10 @@ class _TabBarViewCustomState extends State<TabBarViewCustom> {
                       color: widget.myLoading.isDark
                           ? widget.myLoading.getProfilePageIndex == 1
                               ? ColorRes.white
-                              : ColorRes.greyShade100.withOpacity(0.5)
+                              : ColorRes.greyShade100.withValues(alpha: 0.5)
                           : widget.myLoading.getProfilePageIndex == 1
                               ? ColorRes.colorPrimaryDark
-                              : ColorRes.colorPrimaryDark.withOpacity(0.5),
+                              : ColorRes.colorPrimaryDark.withValues(alpha: 0.5),
                     ),
                   ),
                 ),
@@ -88,9 +77,7 @@ class _TabBarViewCustomState extends State<TabBarViewCustom> {
           Container(
             height: 0.5,
             width: double.infinity,
-            color: widget.myLoading.isDark
-                ? ColorRes.white
-                : ColorRes.colorPrimary,
+            color: widget.myLoading.isDark ? ColorRes.white : ColorRes.colorPrimary,
           ),
         ],
       ),

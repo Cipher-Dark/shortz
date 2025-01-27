@@ -49,8 +49,7 @@ class _ProfileVideoScreenState extends State<ProfileVideoScreen> {
       children: [
         Consumer<MyLoading>(
           builder: (context, value, child) {
-            if (value.isScrollProfileVideo &&
-                value.getProfilePageIndex == widget.type) {
+            if (value.isScrollProfileVideo && value.getProfilePageIndex == widget.type) {
               if (!isLoading) {
                 callApi();
               }
@@ -65,15 +64,14 @@ class _ProfileVideoScreenState extends State<ProfileVideoScreen> {
                 ? GridView(
                     primary: false,
                     shrinkWrap: true,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3, childAspectRatio: 1 / 1.3),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, childAspectRatio: 1 / 1.3),
                     scrollDirection: Axis.vertical,
                     physics: NeverScrollableScrollPhysics(),
                     padding: EdgeInsets.only(left: 10, bottom: 20),
                     children: List.generate(6, (index) {
                       return Shimmer.fromColors(
-                        baseColor: Colors.grey.withOpacity(0.2),
-                        highlightColor: ColorRes.colorLight.withOpacity(0.2),
+                        baseColor: Colors.grey.withValues(alpha: 0.2),
+                        highlightColor: ColorRes.colorLight.withValues(alpha: 0.2),
                         direction: ShimmerDirection.ltr,
                         child: Container(
                           width: double.infinity,
@@ -90,21 +88,13 @@ class _ProfileVideoScreenState extends State<ProfileVideoScreen> {
                 : _profileData.isEmpty
                     ? DataNotFound()
                     : GridView.builder(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
-                            childAspectRatio: 1 / 1.3,
-                            mainAxisSpacing: 5,
-                            crossAxisSpacing: 5),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, childAspectRatio: 1 / 1.3, mainAxisSpacing: 5, crossAxisSpacing: 5),
                         scrollDirection: Axis.vertical,
                         itemCount: _profileData.length,
                         itemBuilder: (context, index) {
                           return InkWell(
                             onLongPress: () => onLongPressOnPost(index),
-                            child: ItemPost(
-                                data: _profileData[index],
-                                list: _profileData,
-                                type: widget.type + 1,
-                                userId: widget.userId),
+                            child: ItemPost(data: _profileData[index], list: _profileData, type: widget.type + 1, userId: widget.userId),
                           );
                         },
                       ),
@@ -127,9 +117,7 @@ class _ProfileVideoScreenState extends State<ProfileVideoScreen> {
             onPositiveTap: () async {
               Navigator.pop(context);
               CommonUI.showLoader(context);
-              ApiService()
-                  .deletePost(_profileData[index].postId.toString())
-                  .then(
+              ApiService().deletePost(_profileData[index].postId.toString()).then(
                 (value) {
                   Navigator.pop(context);
                   _profileData.remove(_profileData[index]);
@@ -151,10 +139,7 @@ class _ProfileVideoScreenState extends State<ProfileVideoScreen> {
     }
     isLoading = true;
 
-    ApiService()
-        .getUserVideos('${_profileData.length}', '$paginationLimit',
-            widget.userId, widget.type)
-        .then((value) {
+    ApiService().getUserVideos('${_profileData.length}', '$paginationLimit', widget.userId, widget.type).then((value) {
       setState(() {
         if ((value.data?.length ?? 0) < paginationLimit) {
           hasMoreData = false;

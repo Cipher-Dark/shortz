@@ -23,9 +23,7 @@ class LiveStreamBottomField extends StatelessWidget {
             Expanded(
               child: Container(
                 height: 46,
-                decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.5),
-                    borderRadius: BorderRadius.circular(30)),
+                decoration: BoxDecoration(color: Colors.black.withValues(alpha: 0.5), borderRadius: BorderRadius.circular(30)),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -39,14 +37,7 @@ class LiveStreamBottomField extends StatelessWidget {
                         controller: model.commentController,
                         focusNode: model.commentFocus,
                         cursorColor: ColorRes.white,
-                        decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'Comment...',
-                            contentPadding:
-                                const EdgeInsets.symmetric(horizontal: 20),
-                            hintStyle: TextStyle(
-                                color: ColorRes.white.withOpacity(0.70),
-                                fontSize: 15)),
+                        decoration: InputDecoration(border: InputBorder.none, hintText: 'Comment...', contentPadding: const EdgeInsets.symmetric(horizontal: 20), hintStyle: TextStyle(color: ColorRes.white.withValues(alpha: 0.70), fontSize: 15)),
                       ),
                     ),
                     InkWell(
@@ -59,7 +50,10 @@ class LiveStreamBottomField extends StatelessWidget {
                           gradient: LinearGradient(
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
-                            colors: [ColorRes.colorPink, ColorRes.colorTheme],
+                            colors: [
+                              ColorRes.colorPink,
+                              ColorRes.colorTheme
+                            ],
                           ),
                         ),
                         child: Image.asset(send),

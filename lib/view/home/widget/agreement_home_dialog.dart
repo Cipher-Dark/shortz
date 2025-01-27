@@ -44,8 +44,7 @@ class AgreementHomeDialog extends StatelessWidget {
                     ),
                     Spacer(),
                     Image(
-                      image:
-                          AssetImage(myLoading.isDark ? icLogo : icLogoLight),
+                      image: AssetImage(myLoading.isDark ? icLogo : icLogoLight),
                       height: 70,
                     ),
                     Spacer(),
@@ -92,7 +91,7 @@ class AgreementHomeDialog extends StatelessWidget {
                           height: 20,
                           width: 2,
                           margin: EdgeInsets.symmetric(horizontal: 5),
-                          color: ColorRes.white.withOpacity(0.5),
+                          color: ColorRes.white..withValues(alpha: 0.5),
                         ),
                         InkWell(
                           onTap: () {
@@ -128,17 +127,12 @@ class AgreementHomeDialog extends StatelessWidget {
                         height: 55,
                         decoration: BoxDecoration(
                           color: ColorRes.colorPrimary,
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(20),
-                              bottomRight: Radius.circular(20)),
+                          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20)),
                         ),
                         child: Center(
                           child: Text(
                             LKey.accept.tr,
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontFamily: FontRes.fNSfUiLight,
-                                decoration: TextDecoration.none),
+                            style: TextStyle(fontSize: 14, fontFamily: FontRes.fNSfUiLight, decoration: TextDecoration.none),
                           ),
                         ),
                       ),

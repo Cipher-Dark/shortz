@@ -56,10 +56,10 @@ class _WalletScreenState extends State<WalletScreen> {
                             margin: EdgeInsets.all(15),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
-                              gradient: LinearGradient(
-                                  colors: [ColorRes.colorTheme, ColorRes.colorPink],
-                                  begin: Alignment.centerLeft,
-                                  end: Alignment.centerRight),
+                              gradient: LinearGradient(colors: [
+                                ColorRes.colorTheme,
+                                ColorRes.colorPink
+                              ], begin: Alignment.centerLeft, end: Alignment.centerRight),
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,7 +69,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                   value: (_myWalletData?.myWallet ?? 0) / (settingData?.minRedeemCoins ?? 0),
                                   minHeight: 2,
                                   borderRadius: BorderRadius.circular(10),
-                                  backgroundColor: ColorRes.white.withOpacity(0.40),
+                                  backgroundColor: ColorRes.white..withValues(alpha: 0.40),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.symmetric(vertical: 5),
@@ -93,19 +93,13 @@ class _WalletScreenState extends State<WalletScreen> {
                                             NumberFormat.compact(
                                               locale: 'en',
                                             ).format(_myWalletData?.myWallet ?? 0),
-                                            style: TextStyle(
-                                                color: ColorRes.white,
-                                                fontFamily: FontRes.fNSfUiSemiBold,
-                                                fontSize: 35),
+                                            style: TextStyle(color: ColorRes.white, fontFamily: FontRes.fNSfUiSemiBold, fontSize: 35),
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
                                           ),
                                           Text(
                                             '${appName} ${LKey.youHave.tr}',
-                                            style: TextStyle(
-                                                color: ColorRes.white.withOpacity(0.8),
-                                                fontFamily: FontRes.fNSfUiRegular,
-                                                fontSize: 15),
+                                            style: TextStyle(color: ColorRes.white..withValues(alpha: 0.8), fontFamily: FontRes.fNSfUiRegular, fontSize: 15),
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
                                           ),
@@ -126,8 +120,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                         ),
                                         child: Text(
                                           '${LKey.add.tr} ${appName}',
-                                          style: TextStyle(
-                                              color: ColorRes.white, fontSize: 15, fontFamily: FontRes.fNSfUiRegular),
+                                          style: TextStyle(color: ColorRes.white, fontSize: 15, fontFamily: FontRes.fNSfUiRegular),
                                         ),
                                       ),
                                     )
@@ -139,8 +132,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                     Expanded(
                                       child: Text(
                                         AppRes.redeemTitle((settingData?.coinValue ?? 0.0).toStringAsFixed(2)),
-                                        style: TextStyle(
-                                            fontFamily: FontRes.fNSfUiRegular, fontSize: 13, color: ColorRes.white),
+                                        style: TextStyle(fontFamily: FontRes.fNSfUiRegular, fontSize: 13, color: ColorRes.white),
                                       ),
                                     ),
                                     Image.asset(icLogo, height: 36, width: 36)
@@ -149,7 +141,7 @@ class _WalletScreenState extends State<WalletScreen> {
                               ],
                             ),
                           ),
-                          Divider(color: ColorRes.white.withOpacity(0.1), endIndent: 15, indent: 15),
+                          Divider(color: ColorRes.white..withValues(alpha: 0.1), endIndent: 15, indent: 15),
                           Container(
                             height: 58,
                             margin: EdgeInsets.all(15),
@@ -164,10 +156,10 @@ class _WalletScreenState extends State<WalletScreen> {
                                   padding: EdgeInsets.all(13),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
-                                    gradient: LinearGradient(
-                                        colors: [ColorRes.colorTheme, ColorRes.colorPink],
-                                        begin: Alignment.centerLeft,
-                                        end: Alignment.centerRight),
+                                    gradient: LinearGradient(colors: [
+                                      ColorRes.colorTheme,
+                                      ColorRes.colorPink
+                                    ], begin: Alignment.centerLeft, end: Alignment.centerRight),
                                   ),
                                   child: Text(
                                     "+${NumberFormat.compact(locale: 'en').format(settingData?.rewardVideoUpload ?? 0)}",
@@ -194,7 +186,7 @@ class _WalletScreenState extends State<WalletScreen> {
                             ),
                           ),
                           Divider(
-                            color: ColorRes.white.withOpacity(0.1),
+                            color: ColorRes.white.withValues(alpha: 0.1),
                             endIndent: 15,
                             indent: 15,
                           ),
@@ -222,7 +214,10 @@ class _WalletScreenState extends State<WalletScreen> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(12)),
                   gradient: LinearGradient(
-                    colors: [ColorRes.colorTheme, ColorRes.colorPink],
+                    colors: [
+                      ColorRes.colorTheme,
+                      ColorRes.colorPink
+                    ],
                   ),
                 ),
                 child: Center(

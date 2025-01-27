@@ -7,14 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ConfirmationDialog extends StatelessWidget {
-  const ConfirmationDialog(
-      {Key? key,
-      required this.title1,
-      required this.title2,
-      required this.onPositiveTap,
-      required this.aspectRatio,
-      this.positiveText})
-      : super(key: key);
+  const ConfirmationDialog({Key? key, required this.title1, required this.title2, required this.onPositiveTap, required this.aspectRatio, this.positiveText}) : super(key: key);
 
   final String title1;
   final String title2;
@@ -42,14 +35,10 @@ class ConfirmationDialog extends StatelessWidget {
                 Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: MediaQuery.of(context).size.width / 8),
+                      padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width / 8),
                       child: Text(
                         title1,
-                        style: TextStyle(
-                            color: ColorRes.white,
-                            fontFamily: FontRes.fNSfUiBold,
-                            fontSize: 20),
+                        style: TextStyle(color: ColorRes.white, fontFamily: FontRes.fNSfUiBold, fontSize: 20),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -73,8 +62,7 @@ class ConfirmationDialog extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(
                     border: Border(
-                      top: BorderSide(
-                          color: ColorRes.white.withOpacity(0.8), width: 0.5),
+                      top: BorderSide(color: ColorRes.white.withValues(alpha: 0.8), width: 0.5),
                     ),
                   ),
                   child: Row(
@@ -90,10 +78,7 @@ class ConfirmationDialog extends StatelessWidget {
                             decoration: BoxDecoration(
                               border: Border(
                                 right: BorderSide(
-                                  color: Directionality.of(context) ==
-                                          TextDirection.rtl
-                                      ? Colors.transparent
-                                      : ColorRes.white.withOpacity(0.8),
+                                  color: Directionality.of(context) == TextDirection.rtl ? Colors.transparent : ColorRes.white.withValues(alpha: 0.8),
                                   width: 0.5,
                                 ),
                               ),
@@ -101,8 +86,7 @@ class ConfirmationDialog extends StatelessWidget {
                             alignment: Alignment.center,
                             child: Text(
                               LKey.cancel.tr,
-                              style: TextStyle(
-                                  fontSize: 17, color: ColorRes.colorTextLight),
+                              style: TextStyle(fontSize: 17, color: ColorRes.colorTextLight),
                             ),
                           ),
                         ),
@@ -116,20 +100,14 @@ class ConfirmationDialog extends StatelessWidget {
                             decoration: BoxDecoration(
                               border: Border(
                                 right: BorderSide(
-                                  color: Directionality.of(context) !=
-                                          TextDirection.rtl
-                                      ? Colors.transparent
-                                      : ColorRes.white.withOpacity(0.8),
+                                  color: Directionality.of(context) != TextDirection.rtl ? Colors.transparent : ColorRes.white.withValues(alpha: 0.8),
                                   width: 0.5,
                                 ),
                               ),
                             ),
                             child: Text(
                               positiveText ?? LKey.yes.tr,
-                              style: TextStyle(
-                                  fontSize: 17,
-                                  fontFamily: FontRes.fNSfUiMedium,
-                                  color: ColorRes.colorPink),
+                              style: TextStyle(fontSize: 17, fontFamily: FontRes.fNSfUiMedium, color: ColorRes.colorPink),
                             ),
                           ),
                         ),

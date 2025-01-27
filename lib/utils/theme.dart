@@ -14,7 +14,7 @@ ThemeData lightTheme() {
     highlightColor: Colors.transparent,
     focusColor: Colors.transparent,
     colorScheme: ColorScheme(
-      primary: Colors.grey.withOpacity(0.4),
+      primary: Colors.grey..withValues(alpha: 0.4),
       error: ColorRes.colorTheme,
       brightness: Brightness.light,
       surface: ColorRes.greyShade100,
@@ -43,16 +43,7 @@ ThemeData darkTheme() {
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
     focusColor: Colors.transparent,
-    colorScheme: ColorScheme(
-        primary: ColorRes.colorTextLight,
-        error: ColorRes.colorTheme,
-        brightness: Brightness.dark,
-        surface: ColorRes.colorTextLight,
-        onSurface: ColorRes.greyShade100,
-        secondary: ColorRes.colorTheme,
-        onSecondary: Colors.blue,
-        onPrimary: Colors.red,
-        onError: Colors.red),
+    colorScheme: ColorScheme(primary: ColorRes.colorTextLight, error: ColorRes.colorTheme, brightness: Brightness.dark, surface: ColorRes.colorTextLight, onSurface: ColorRes.greyShade100, secondary: ColorRes.colorTheme, onSecondary: Colors.blue, onPrimary: Colors.red, onError: Colors.red),
     fontFamily: FontRes.fNSfUiRegular,
     textTheme: TextTheme(
       bodyLarge: TextStyle(color: ColorRes.white),

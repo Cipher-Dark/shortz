@@ -18,12 +18,7 @@ class ChatArea extends StatelessWidget {
   final Function(ChatMessage? chat) onLongPress;
   final List<String> timeStamp;
 
-  const ChatArea(
-      {Key? key,
-      required this.chatData,
-      required this.onLongPress,
-      required this.timeStamp})
-      : super(key: key);
+  const ChatArea({Key? key, required this.chatData, required this.onLongPress, required this.timeStamp}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,13 +41,9 @@ class ChatArea extends StatelessWidget {
                   shrinkWrap: true,
                   padding: EdgeInsets.zero,
                   physics: const BouncingScrollPhysics(),
-                  keyboardDismissBehavior:
-                      ScrollViewKeyboardDismissBehavior.onDrag,
+                  keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                   itemBuilder: (context, index) {
-                    return yourMsg(
-                        data: messages?[index],
-                        context: context,
-                        isDarkMode: myLoading.isDark);
+                    return yourMsg(data: messages?[index], context: context, isDarkMode: myLoading.isDark);
                   },
                 ),
               ],
@@ -63,10 +54,7 @@ class ChatArea extends StatelessWidget {
     });
   }
 
-  Widget yourMsg(
-      {ChatMessage? data,
-      required BuildContext context,
-      required bool isDarkMode}) {
+  Widget yourMsg({ChatMessage? data, required BuildContext context, required bool isDarkMode}) {
     bool selected = timeStamp.contains('${data?.time?.round()}');
     bool isMe = data?.senderUser?.userid == SessionManager.userId;
     return InkWell(
@@ -84,19 +72,15 @@ class ChatArea extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10),
         margin: EdgeInsets.symmetric(vertical: 2),
         foregroundDecoration: BoxDecoration(
-          color: selected ? Colors.red.withOpacity(0.1) : Colors.transparent,
+          color: selected ? Colors.red.withValues(alpha: 0.1) : Colors.transparent,
         ),
         child: Row(
-          mainAxisAlignment: data?.senderUser?.userid == SessionManager.userId
-              ? MainAxisAlignment.end
-              : MainAxisAlignment.start,
+          mainAxisAlignment: data?.senderUser?.userid == SessionManager.userId ? MainAxisAlignment.end : MainAxisAlignment.start,
           children: [
             isMe ? _dateTimeMessage(data) : SizedBox(),
             isMe ? const SizedBox(width: 10) : SizedBox(),
             Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: isMe ? ColorRes.colorPink : ColorRes.colorPrimary),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: isMe ? ColorRes.colorPink : ColorRes.colorPrimary),
               child: data?.msgType == FirebaseRes.image
                   ? imageMessage(data, context, isDarkMode)
                   : data?.msgType == FirebaseRes.video
@@ -113,14 +97,12 @@ class ChatArea extends StatelessWidget {
 
   Widget _textMessage(ChatMessage? data, BuildContext context) {
     return ConstrainedBox(
-      constraints:
-          BoxConstraints(maxWidth: MediaQuery.of(context).size.width / 1.4),
+      constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width / 1.4),
       child: Padding(
         padding: const EdgeInsets.all(11),
         child: Text(
           data?.msg ?? '',
-          style: const TextStyle(
-              color: ColorRes.white, fontFamily: FontRes.fNSfUiRegular),
+          style: const TextStyle(color: ColorRes.white, fontFamily: FontRes.fNSfUiRegular),
         ),
       ),
     );
@@ -140,8 +122,7 @@ class ChatArea extends StatelessWidget {
     );
   }
 
-  Widget imageMessage(
-      ChatMessage? data, BuildContext context, bool isDarkMode) {
+  Widget imageMessage(ChatMessage? data, BuildContext context, bool isDarkMode) {
     return InkWell(
       borderRadius: BorderRadius.circular(10),
       onLongPress: () {
@@ -149,12 +130,9 @@ class ChatArea extends StatelessWidget {
       },
       child: Container(
         padding: EdgeInsets.all(5),
-        constraints: BoxConstraints(
-            maxWidth: MediaQuery.of(context).size.width / 1.70, minHeight: 230),
+        constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width / 1.70, minHeight: 230),
         decoration: BoxDecoration(
-          color: data?.senderUser?.userid == SessionManager.userId
-              ? ColorRes.colorPink
-              : ColorRes.colorPrimary,
+          color: data?.senderUser?.userid == SessionManager.userId ? ColorRes.colorPink : ColorRes.colorPrimary,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(
@@ -187,14 +165,10 @@ class ChatArea extends StatelessWidget {
             data?.msg == null || data!.msg!.isEmpty
                 ? SizedBox()
                 : Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 6, horizontal: 3),
+                    padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 3),
                     child: Text(
                       data.msg ?? '',
-                      style: TextStyle(
-                          color: isDarkMode
-                              ? ColorRes.colorPrimary
-                              : ColorRes.greyShade100),
+                      style: TextStyle(color: isDarkMode ? ColorRes.colorPrimary : ColorRes.greyShade100),
                     ),
                   )
           ],
@@ -203,8 +177,7 @@ class ChatArea extends StatelessWidget {
     );
   }
 
-  Widget videoMessage(
-      ChatMessage? data, BuildContext context, bool isDarkMode) {
+  Widget videoMessage(ChatMessage? data, BuildContext context, bool isDarkMode) {
     return InkWell(
       borderRadius: BorderRadius.circular(10),
       onLongPress: () {
@@ -212,12 +185,9 @@ class ChatArea extends StatelessWidget {
       },
       child: Container(
         padding: EdgeInsets.all(5),
-        constraints: BoxConstraints(
-            maxWidth: MediaQuery.of(context).size.width / 1.70, minHeight: 230),
+        constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width / 1.70, minHeight: 230),
         decoration: BoxDecoration(
-          color: data?.senderUser?.userid == SessionManager.userId
-              ? ColorRes.colorPink
-              : ColorRes.colorPrimary,
+          color: data?.senderUser?.userid == SessionManager.userId ? ColorRes.colorPink : ColorRes.colorPrimary,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(
@@ -256,8 +226,7 @@ class ChatArea extends StatelessWidget {
                   },
                   child: Container(
                     alignment: Alignment.center,
-                    child: Icon(Icons.play_circle_fill_sharp,
-                        size: 40, color: ColorRes.white.withOpacity(0.5)),
+                    child: Icon(Icons.play_circle_fill_sharp, size: 40, color: ColorRes.white..withValues(alpha: 0.5)),
                   ),
                 ),
               ],
@@ -265,14 +234,10 @@ class ChatArea extends StatelessWidget {
             data?.msg == null || data!.msg!.isEmpty
                 ? SizedBox()
                 : Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 6, horizontal: 3),
+                    padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 3),
                     child: Text(
                       data.msg ?? '',
-                      style: TextStyle(
-                          color: isDarkMode
-                              ? ColorRes.colorPrimary
-                              : ColorRes.greyShade100),
+                      style: TextStyle(color: isDarkMode ? ColorRes.colorPrimary : ColorRes.greyShade100),
                     ),
                   )
           ],

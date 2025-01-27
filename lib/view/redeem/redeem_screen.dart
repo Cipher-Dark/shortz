@@ -73,13 +73,10 @@ class _RedeemScreenState extends State<RedeemScreen> {
                                 alignment: Alignment.center,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: myLoading.isDark
-                                      ? ColorRes.colorPrimaryDark
-                                      : ColorRes.greyShade100,
+                                  color: myLoading.isDark ? ColorRes.colorPrimaryDark : ColorRes.greyShade100,
                                   boxShadow: [
                                     BoxShadow(
-                                      color:
-                                          ColorRes.colorPink.withOpacity(0.5),
+                                      color: ColorRes.colorPink.withValues(alpha: 0.5),
                                       blurRadius: 20,
                                       spreadRadius: 2,
                                     ),
@@ -101,8 +98,7 @@ class _RedeemScreenState extends State<RedeemScreen> {
                                 height: 35,
                                 padding: EdgeInsets.symmetric(horizontal: 30),
                                 decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(50)),
+                                  borderRadius: BorderRadius.all(Radius.circular(50)),
                                   gradient: LinearGradient(
                                     colors: [
                                       ColorRes.colorTheme,
@@ -113,10 +109,7 @@ class _RedeemScreenState extends State<RedeemScreen> {
                                 alignment: Alignment.center,
                                 child: Text(
                                   '$appName ${LKey.youHave.tr}',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: FontRes.fNSfUiMedium,
-                                      color: ColorRes.white),
+                                  style: TextStyle(fontSize: 15, fontFamily: FontRes.fNSfUiMedium, color: ColorRes.white),
                                 ),
                               ),
                             )
@@ -128,10 +121,8 @@ class _RedeemScreenState extends State<RedeemScreen> {
                       ),
                       Center(
                         child: Text(
-                          AppRes.redeemTitle((settingData?.coinValue ?? 0.0)
-                              .toStringAsFixed(2)),
-                          style: TextStyle(
-                              color: ColorRes.colorTextLight, fontSize: 12),
+                          AppRes.redeemTitle((settingData?.coinValue ?? 0.0).toStringAsFixed(2)),
+                          style: TextStyle(color: ColorRes.colorTextLight, fontSize: 12),
                         ),
                       ),
                       SizedBox(
@@ -149,9 +140,7 @@ class _RedeemScreenState extends State<RedeemScreen> {
                         padding: EdgeInsets.symmetric(horizontal: 15),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
-                          color: myLoading.isDark
-                              ? ColorRes.colorPrimary
-                              : ColorRes.greyShade100,
+                          color: myLoading.isDark ? ColorRes.colorPrimary : ColorRes.greyShade100,
                         ),
                         child: SelectMethodDropdown((value) {
                           selectMethod = value;
@@ -169,9 +158,7 @@ class _RedeemScreenState extends State<RedeemScreen> {
                         padding: EdgeInsets.symmetric(horizontal: 15),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
-                          color: myLoading.isDark
-                              ? ColorRes.colorPrimary
-                              : ColorRes.greyShade100,
+                          color: myLoading.isDark ? ColorRes.colorPrimary : ColorRes.greyShade100,
                         ),
                         child: TextField(
                           onChanged: (value) => account = value,
@@ -191,19 +178,13 @@ class _RedeemScreenState extends State<RedeemScreen> {
                       InkWell(
                         onTap: () {
                           if (selectMethod.isEmpty) {
-                            CommonUI.showToast(
-                                msg: LKey.pleaseSelectPaymentMethod.tr);
+                            CommonUI.showToast(msg: LKey.pleaseSelectPaymentMethod.tr);
                           } else if (account.isEmpty) {
                             CommonUI.showToast(msg: LKey.pleaseEnterAccount.tr);
                           } else {
-                            double amount = ((_myWalletData?.myWallet ?? 0) *
-                                    (settingData?.coinValue ?? 0)) /
-                                1000;
+                            double amount = ((_myWalletData?.myWallet ?? 0) * (settingData?.coinValue ?? 0)) / 1000;
                             CommonUI.showLoader(context);
-                            ApiService()
-                                .redeemRequest(amount.toString(), selectMethod,
-                                    account, noOfRedeemCoin)
-                                .then((value) {
+                            ApiService().redeemRequest(amount.toString(), selectMethod, account, noOfRedeemCoin).then((value) {
                               if (value.status == 200) {
                                 if (interstitialAd != null) {
                                   interstitialAd?.show().then((value) {
@@ -224,8 +205,7 @@ class _RedeemScreenState extends State<RedeemScreen> {
                               height: 40,
                               padding: EdgeInsets.symmetric(horizontal: 30),
                               decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
+                                borderRadius: BorderRadius.all(Radius.circular(5)),
                                 gradient: LinearGradient(
                                   colors: [
                                     ColorRes.colorTheme,
@@ -236,10 +216,7 @@ class _RedeemScreenState extends State<RedeemScreen> {
                               alignment: Alignment.center,
                               child: Text(
                                 LKey.redeem.tr.toUpperCase(),
-                                style: TextStyle(
-                                    fontFamily: FontRes.fNSfUiMedium,
-                                    letterSpacing: 1,
-                                    color: ColorRes.white),
+                                style: TextStyle(fontFamily: FontRes.fNSfUiMedium, letterSpacing: 1, color: ColorRes.white),
                               ),
                             ),
                           ),
@@ -250,8 +227,7 @@ class _RedeemScreenState extends State<RedeemScreen> {
                       ),
                       Center(
                         child: Text(
-                          LKey.redeemRequestsAreProcessedWithIn10DaysNAndBePrepared
-                              .tr,
+                          LKey.redeemRequestsAreProcessedWithIn10DaysNAndBePrepared.tr,
                           textAlign: TextAlign.center,
                           style: TextStyle(color: ColorRes.colorTextLight),
                         ),
@@ -322,16 +298,13 @@ class _SelectMethodDropdownState extends State<SelectMethodDropdown> {
       isExpanded: true,
       elevation: 16,
       style: TextStyle(color: ColorRes.colorTextLight),
-      dropdownColor: widget.myLoading.isDark
-          ? ColorRes.colorPrimary
-          : ColorRes.greyShade100,
+      dropdownColor: widget.myLoading.isDark ? ColorRes.colorPrimary : ColorRes.greyShade100,
       onChanged: (String? newValue) {
         currentValue = newValue;
         widget.function(currentValue);
         setState(() {});
       },
-      iconEnabledColor:
-          widget.myLoading.isDark ? ColorRes.white : ColorRes.colorPrimaryDark,
+      iconEnabledColor: widget.myLoading.isDark ? ColorRes.white : ColorRes.colorPrimaryDark,
       items: paymentMethods.map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
           value: value,

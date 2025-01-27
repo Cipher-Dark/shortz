@@ -61,20 +61,15 @@ class _MyQrScanCodeScreenState extends State<MyQrScanCodeScreen> {
                     key: screenshotKey,
                     child: Container(
                       width: double.infinity,
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+                      margin: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(
                           Radius.circular(15),
                         ),
-                        color: myLoading.isDark
-                            ? ColorRes.colorPrimary
-                            : ColorRes.greyShade100,
+                        color: myLoading.isDark ? ColorRes.colorPrimary : ColorRes.greyShade100,
                         boxShadow: [
                           BoxShadow(
-                            color: myLoading.isDark
-                                ? Colors.black
-                                : Colors.black.withOpacity(0.2),
+                            color: myLoading.isDark ? Colors.black : Colors.black.withValues(alpha: 0.2),
                             blurRadius: 10,
                           ),
                         ],
@@ -84,8 +79,7 @@ class _MyQrScanCodeScreenState extends State<MyQrScanCodeScreen> {
                           Padding(
                             padding: EdgeInsets.only(top: 25, bottom: 15),
                             child: ClipRRect(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15)),
+                              borderRadius: BorderRadius.all(Radius.circular(15)),
                               child: QrImageView(
                                 backgroundColor: ColorRes.white,
                                 data: SessionManager.userId.toString(),
@@ -96,8 +90,7 @@ class _MyQrScanCodeScreenState extends State<MyQrScanCodeScreen> {
                           ),
                           ClipOval(
                             child: Image.network(
-                              ConstRes.itemBaseUrl +
-                                  '${userData?.data?.userProfile ?? ''}',
+                              ConstRes.itemBaseUrl + '${userData?.data?.userProfile ?? ''}',
                               height: 50,
                               width: 50,
                               fit: BoxFit.cover,
@@ -122,9 +115,7 @@ class _MyQrScanCodeScreenState extends State<MyQrScanCodeScreen> {
                             height: 10,
                           ),
                           Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal:
-                                    MediaQuery.of(context).size.width / 15),
+                            padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width / 15),
                             child: Text(
                               userData?.data?.bio ?? '',
                               textAlign: TextAlign.center,
@@ -148,9 +139,7 @@ class _MyQrScanCodeScreenState extends State<MyQrScanCodeScreen> {
                             height: 10,
                           ),
                           Image(
-                            image: AssetImage(myLoading.isDark
-                                ? icLogoHorizontal
-                                : icLogoHorizontalLight),
+                            image: AssetImage(myLoading.isDark ? icLogoHorizontal : icLogoHorizontalLight),
                             height: 60,
                           ),
                           SizedBox(
@@ -219,11 +208,9 @@ class _MyQrScanCodeScreenState extends State<MyQrScanCodeScreen> {
 
   void _takeScreenShot(BuildContext context) async {
     CommonUI.showLoader(context);
-    RenderRepaintBoundary boundary = screenshotKey.currentContext!
-        .findRenderObject() as RenderRepaintBoundary;
+    RenderRepaintBoundary boundary = screenshotKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
     ui.Image image = await boundary.toImage(pixelRatio: 10);
-    ByteData? byteData =
-        await (image.toByteData(format: ui.ImageByteFormat.png));
+    ByteData? byteData = await (image.toByteData(format: ui.ImageByteFormat.png));
     Uint8List? pngBytes = byteData?.buffer.asUint8List();
     print(pngBytes);
     convertImageToFile(pngBytes!, context).then((value) {
@@ -233,8 +220,7 @@ class _MyQrScanCodeScreenState extends State<MyQrScanCodeScreen> {
 
   Future<void> convertImageToFile(Uint8List image, BuildContext context) async {
     if (Platform.isAndroid) {
-      final file = File(
-          '/storage/emulated/0/Download/${DateTime.now().millisecondsSinceEpoch}.png');
+      final file = File('/storage/emulated/0/Download/${DateTime.now().millisecondsSinceEpoch}.png');
       await file.writeAsBytes(image);
     } else {
       var f = await getApplicationDocumentsDirectory();

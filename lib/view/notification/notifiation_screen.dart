@@ -21,10 +21,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
   @override
   void initState() {
-    controller = PageController(
-        initialPage: Provider.of<MyLoading>(context, listen: false)
-            .getNotificationPageIndex,
-        keepPage: true);
+    controller = PageController(initialPage: Provider.of<MyLoading>(context, listen: false).getNotificationPageIndex, keepPage: true);
     super.initState();
   }
 
@@ -40,9 +37,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   InkWell(
                     onTap: () {
                       myLoading.setNotificationPageIndex(0);
-                      controller.animateToPage(0,
-                          duration: Duration(milliseconds: 250),
-                          curve: Curves.linear);
+                      controller.animateToPage(0, duration: Duration(milliseconds: 250), curve: Curves.linear);
                     },
                     child: Container(
                       margin: EdgeInsets.only(left: 15, top: 20, bottom: 15),
@@ -55,7 +50,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                   : ColorRes.colorTextLight
                               : myLoading.getNotificationPageIndex == 0
                                   ? ColorRes.colorPrimaryDark
-                                  : ColorRes.colorPrimaryDark.withOpacity(0.5),
+                                  : ColorRes.colorPrimaryDark.withValues(alpha: 0.5),
                           fontFamily: FontRes.fNSfUiBold,
                           fontSize: 20,
                         ),
@@ -65,17 +60,13 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   Container(
                     height: 20,
                     width: 2,
-                    color: myLoading.isDark
-                        ? ColorRes.white
-                        : ColorRes.colorPrimaryDark,
+                    color: myLoading.isDark ? ColorRes.white : ColorRes.colorPrimaryDark,
                     margin: EdgeInsets.symmetric(horizontal: 8),
                   ),
                   InkWell(
                     onTap: () {
                       myLoading.setNotificationPageIndex(1);
-                      controller.animateToPage(1,
-                          duration: Duration(milliseconds: 250),
-                          curve: Curves.linear);
+                      controller.animateToPage(1, duration: Duration(milliseconds: 250), curve: Curves.linear);
                     },
                     child: Container(
                       margin: EdgeInsets.only(top: 15, bottom: 15),
@@ -88,7 +79,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                   : ColorRes.colorTextLight
                               : myLoading.getNotificationPageIndex == 1
                                   ? ColorRes.colorPrimaryDark
-                                  : ColorRes.colorPrimaryDark.withOpacity(0.5),
+                                  : ColorRes.colorPrimaryDark.withValues(alpha: 0.5),
                           fontFamily: FontRes.fNSfUiBold,
                           fontSize: 20,
                         ),
@@ -100,8 +91,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
               Expanded(
                 child: PageView(
                   controller: controller,
-                  onPageChanged: (value) =>
-                      myLoading.setNotificationPageIndex(value),
+                  onPageChanged: (value) => myLoading.setNotificationPageIndex(value),
                   children: [
                     NotificationList(),
                     ChatList(

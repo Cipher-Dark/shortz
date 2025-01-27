@@ -22,11 +22,7 @@ class BroadCastScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<BroadCastScreenViewModel>.reactive(
       onViewModelReady: (model) {
-        return model.init(
-            isBroadCast: true,
-            agoraToken: agoraToken ?? "",
-            channelName: channelName ?? '',
-            registrationUser: registrationUser);
+        return model.init(isBroadCast: true, agoraToken: agoraToken ?? "", channelName: channelName ?? '', registrationUser: registrationUser);
       },
       onDispose: (viewModel) {
         viewModel.leave();
@@ -35,6 +31,7 @@ class BroadCastScreen extends StatelessWidget {
       builder: (context, model, child) {
         return PopScope(
           canPop: false,
+          // ignore: deprecated_member_use
           onPopInvoked: (didPop) {
             model.onEndButtonClick();
           },
@@ -51,8 +48,7 @@ class BroadCastScreen extends StatelessWidget {
                     children: [
                       BroadCastTopBarArea(model: model),
                       Spacer(),
-                      LiveStreamChatList(
-                          commentList: model.commentList, pageContext: context),
+                      LiveStreamChatList(commentList: model.commentList, pageContext: context),
                       LiveStreamBottomField(
                         model: model,
                       )

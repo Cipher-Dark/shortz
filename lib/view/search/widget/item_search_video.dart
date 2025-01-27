@@ -94,11 +94,7 @@ class ItemSearchVideo extends StatelessWidget {
                           '@${videoData?.userName ?? ' '}',
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                              fontFamily: FontRes.fNSfUiSemiBold,
-                              fontSize: 15,
-                              color: ColorRes.white,
-                              letterSpacing: 0.5),
+                          style: TextStyle(fontFamily: FontRes.fNSfUiSemiBold, fontSize: 15, color: ColorRes.white, letterSpacing: 0.5),
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 5.0),
@@ -114,7 +110,7 @@ class ItemSearchVideo extends StatelessWidget {
                               shadows: [
                                 Shadow(
                                   offset: Offset(1, 1),
-                                  color: Colors.black.withOpacity(0.5),
+                                  color: Colors.black.withValues(alpha: 0.5),
                                   blurRadius: 5,
                                 ),
                               ],
@@ -132,8 +128,7 @@ class ItemSearchVideo extends StatelessWidget {
                               width: 5,
                             ),
                             Text(
-                              NumberFormat.compact(locale: 'en')
-                                  .format(videoData?.postLikesCount ?? 0),
+                              NumberFormat.compact(locale: 'en').format(videoData?.postLikesCount ?? 0),
                               style: TextStyle(color: ColorRes.white),
                             ),
                           ],

@@ -5,9 +5,7 @@ class BlurTab extends StatelessWidget {
   final double height;
   final double radius;
 
-  const BlurTab(
-      {Key? key, required this.child, this.height = 50, this.radius = 30})
-      : super(key: key);
+  const BlurTab({Key? key, required this.child, this.height = 50, this.radius = 30}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +15,7 @@ class BlurTab extends StatelessWidget {
         horizontal: 10,
       ),
       decoration: BoxDecoration(
-        color: Colors.black.withOpacity(0.5),
+        color: Colors.black..withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(radius),
       ),
       child: ClipRRect(

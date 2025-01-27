@@ -120,11 +120,7 @@ class _CameraScreenState extends State<CameraScreen> {
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
-                    child: LinearProgressIndicator(
-                        backgroundColor: ColorRes.white,
-                        minHeight: 3,
-                        value: currentPercentage / 100,
-                        color: ColorRes.colorPrimaryDark),
+                    child: LinearProgressIndicator(backgroundColor: ColorRes.white, minHeight: 3, value: currentPercentage / 100, color: ColorRes.colorPrimaryDark),
                   ),
                 ),
               ),
@@ -210,8 +206,7 @@ class _CameraScreenState extends State<CameraScreen> {
                                 onTap: () {
                                   showModalBottomSheet(
                                     context: context,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.vertical(top: Radius.circular(15))),
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(15))),
                                     backgroundColor: ColorRes.colorPrimaryDark,
                                     isScrollControlled: true,
                                     builder: (context) {
@@ -357,14 +352,7 @@ class _CameraScreenState extends State<CameraScreen> {
                         onTap: () {
                           Get.back();
                         },
-                        child: Container(
-                            height: 35,
-                            width: 35,
-                            margin: const EdgeInsets.all(15),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30), color: ColorRes.white.withOpacity(0.1)),
-                            alignment: Alignment.center,
-                            child: const Icon(Icons.close_rounded, color: ColorRes.white, size: 25)),
+                        child: Container(height: 35, width: 35, margin: const EdgeInsets.all(15), decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: ColorRes.white..withValues(alpha: 0.1)), alignment: Alignment.center, child: const Icon(Icons.close_rounded, color: ColorRes.white, size: 25)),
                       ),
                     ),
                     const Spacer(),
@@ -374,10 +362,7 @@ class _CameraScreenState extends State<CameraScreen> {
                         text: TextSpan(
                           text: '${LKey.allow.tr} ',
                           children: [
-                            TextSpan(
-                                text: appName,
-                                style:
-                                    TextStyle(color: ColorRes.colorPink, fontFamily: FontRes.fNSfUiBold, fontSize: 17)),
+                            TextSpan(text: appName, style: TextStyle(color: ColorRes.colorPink, fontFamily: FontRes.fNSfUiBold, fontSize: 17)),
                             TextSpan(text: ' ${LKey.toAccessYourCameraAndMicrophone}')
                           ],
                           style: TextStyle(
@@ -469,12 +454,15 @@ class _CameraScreenState extends State<CameraScreen> {
   @pragma('vm:entry-point')
   static void downloadCallback(String id, int status, int progress) {
     final SendPort send = IsolateNameServer.lookupPortByName('downloader_send_port')!;
-    send.send([id, status, progress]);
+    send.send([
+      id,
+      status,
+      progress
+    ]);
   }
 
   Future<String> _findLocalPath() async {
-    final directory =
-        Platform.isAndroid ? await (getExternalStorageDirectory()) : await getApplicationDocumentsDirectory();
+    final directory = Platform.isAndroid ? await (getExternalStorageDirectory()) : await getApplicationDocumentsDirectory();
     return directory!.path;
   }
 
@@ -585,8 +573,7 @@ class _CameraScreenState extends State<CameraScreen> {
       try {
         String localPath = await _findLocalPath();
         if (!Platform.isAndroid) {
-          await FFmpegKit.execute(
-              '-i $pathOfVideo -y -ss 00:00:01.000 -vframes 1 "$localPath${Platform.pathSeparator}thumbNail.png"');
+          await FFmpegKit.execute('-i $pathOfVideo -y -ss 00:00:01.000 -vframes 1 "$localPath${Platform.pathSeparator}thumbNail.png"');
           Navigator.pop(context);
           Navigator.push(
             context,
@@ -606,10 +593,8 @@ class _CameraScreenState extends State<CameraScreen> {
         } else {
           if (isFront) {
             await FFmpegKit.execute('-i "$pathOfVideo" -y -vf hflip "$localPath${Platform.pathSeparator}out1.mp4"');
-            await FFmpegKit.execute(
-                '-i "$localPath${Platform.pathSeparator}out1.mp4" -i $_localMusic -y -c:v copy -c:a aac -map 0:v:0 -map 1:a:0 -shortest $localPath${Platform.pathSeparator}out.mp4');
-            await FFmpegKit.execute(
-                '-i $localPath${Platform.pathSeparator}out.mp4 -y -ss 00:00:01.000 -vframes 1 "$localPath${Platform.pathSeparator}thumbNail.png"');
+            await FFmpegKit.execute('-i "$localPath${Platform.pathSeparator}out1.mp4" -i $_localMusic -y -c:v copy -c:a aac -map 0:v:0 -map 1:a:0 -shortest $localPath${Platform.pathSeparator}out.mp4');
+            await FFmpegKit.execute('-i $localPath${Platform.pathSeparator}out.mp4 -y -ss 00:00:01.000 -vframes 1 "$localPath${Platform.pathSeparator}thumbNail.png"');
             Navigator.pop(context);
             Navigator.push(
               context,
@@ -627,10 +612,8 @@ class _CameraScreenState extends State<CameraScreen> {
               },
             );
           } else {
-            await FFmpegKit.execute(
-                '-i $pathOfVideo -i $_localMusic -y -c:v copy -c:a aac -map 0:v:0 -map 1:a:0 -shortest $localPath${Platform.pathSeparator}out.mp4');
-            await FFmpegKit.execute(
-                '-i $localPath${Platform.pathSeparator}out.mp4 -y -ss 00:00:01.000 -vframes 1 "$localPath${Platform.pathSeparator}thumbNail.png"');
+            await FFmpegKit.execute('-i $pathOfVideo -i $_localMusic -y -c:v copy -c:a aac -map 0:v:0 -map 1:a:0 -shortest $localPath${Platform.pathSeparator}out.mp4');
+            await FFmpegKit.execute('-i $localPath${Platform.pathSeparator}out.mp4 -y -ss 00:00:01.000 -vframes 1 "$localPath${Platform.pathSeparator}thumbNail.png"');
             Navigator.pop(context);
             Navigator.push(
               context,
@@ -658,13 +641,11 @@ class _CameraScreenState extends State<CameraScreen> {
     CommonUI.showLoader(context);
     try {
       String localPath = await _findLocalPath();
-      String soundPath =
-          '$localPath${Platform.pathSeparator}${DateTime.now().millisecondsSinceEpoch.toString()}sound.wav';
+      String soundPath = '$localPath${Platform.pathSeparator}${DateTime.now().millisecondsSinceEpoch.toString()}sound.wav';
       await FFmpegKit.execute('-i "$pathOfVideo" -y $soundPath');
       if (Platform.isAndroid && isFront) {
         await FFmpegKit.execute('-i "$pathOfVideo" -y -vf hflip "$localPath${Platform.pathSeparator}out1.mp4"');
-        await FFmpegKit.execute(
-            '-i "$localPath${Platform.pathSeparator}out1.mp4" -y -ss 00:00:01.000 -vframes 1 "$localPath${Platform.pathSeparator}thumbNail.png"');
+        await FFmpegKit.execute('-i "$localPath${Platform.pathSeparator}out1.mp4" -y -ss 00:00:01.000 -vframes 1 "$localPath${Platform.pathSeparator}thumbNail.png"');
         Navigator.pop(context);
         Navigator.push(
           context,
@@ -682,8 +663,7 @@ class _CameraScreenState extends State<CameraScreen> {
           },
         );
       } else {
-        await FFmpegKit.execute(
-            '-i "$pathOfVideo" -y -ss 00:00:01.000 -vframes 1 "$localPath${Platform.pathSeparator}thumbNail.png"');
+        await FFmpegKit.execute('-i "$pathOfVideo" -y -ss 00:00:01.000 -vframes 1 "$localPath${Platform.pathSeparator}thumbNail.png"');
         Navigator.pop(context);
         Navigator.push(
           context,
@@ -752,8 +732,7 @@ class _CameraScreenState extends State<CameraScreen> {
           try {
             String localPath = await _findLocalPath();
             await FFmpegKit.execute('-i "${videoFile.path}" -y $localPath${Platform.pathSeparator}sound.wav');
-            await FFmpegKit.execute(
-                '-i "${videoFile.path}" -y -ss 00:00:01.000 -vframes 1 "$localPath${Platform.pathSeparator}thumbNail.png"');
+            await FFmpegKit.execute('-i "${videoFile.path}" -y -ss 00:00:01.000 -vframes 1 "$localPath${Platform.pathSeparator}thumbNail.png"');
 
             Get.back(); // Close the loader
             Get.to(() => PreviewScreen(
@@ -851,7 +830,11 @@ class IconWithRoundGradient extends StatelessWidget {
         child: Container(
           height: 38,
           width: 38,
-          decoration: BoxDecoration(gradient: LinearGradient(colors: [ColorRes.colorTheme, ColorRes.colorPink])),
+          decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [
+            ColorRes.colorTheme,
+            ColorRes.colorPink
+          ])),
           child: Icon(iconData, color: ColorRes.white, size: size),
         ),
       ),
@@ -873,7 +856,10 @@ class ImageWithRoundGradient extends StatelessWidget {
         width: 38,
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [ColorRes.colorTheme, ColorRes.colorPink],
+            colors: [
+              ColorRes.colorTheme,
+              ColorRes.colorPink
+            ],
           ),
         ),
         child: Padding(

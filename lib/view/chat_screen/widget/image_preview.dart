@@ -36,7 +36,7 @@ class ImagePreview extends StatelessWidget {
 
   Widget topBarArea(BuildContext context) {
     return Container(
-      color: Colors.black.withOpacity(0.3),
+      color: Colors.black..withValues(alpha: 0.3),
       padding: const EdgeInsets.fromLTRB(21, 18, 23, 18),
       child: Row(
         children: [
@@ -46,8 +46,7 @@ class ImagePreview extends StatelessWidget {
             },
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
-            child: Icon(Icons.chevron_left_rounded,
-                color: ColorRes.white, size: 30),
+            child: Icon(Icons.chevron_left_rounded, color: ColorRes.white, size: 30),
           ),
           const SizedBox(width: 20),
           Column(
@@ -59,9 +58,7 @@ class ImagePreview extends StatelessWidget {
                   Hero(
                     tag: KeyRes.userName,
                     child: Text(
-                      message?.senderUser?.userid == SessionManager.userId
-                          ? 'You'
-                          : '${message?.senderUser?.userFullName} ',
+                      message?.senderUser?.userid == SessionManager.userId ? 'You' : '${message?.senderUser?.userFullName} ',
                       style: const TextStyle(
                         color: ColorRes.white,
                         fontSize: 16,
@@ -74,8 +71,7 @@ class ImagePreview extends StatelessWidget {
               Text(
                 DateFormat(
                   '${"dd MMM yyyy"}, ${"hh:mm a"}',
-                ).format(DateTime.fromMillisecondsSinceEpoch(
-                    message!.time!.toInt())),
+                ).format(DateTime.fromMillisecondsSinceEpoch(message!.time!.toInt())),
                 style: const TextStyle(color: ColorRes.white, fontSize: 11),
               ),
             ],

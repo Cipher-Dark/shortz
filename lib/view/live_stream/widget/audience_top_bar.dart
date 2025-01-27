@@ -18,8 +18,7 @@ class AudienceTopBar extends StatelessWidget {
   final BroadCastScreenViewModel model;
   final LiveStreamUser user;
 
-  const AudienceTopBar({Key? key, required this.model, required this.user})
-      : super(key: key);
+  const AudienceTopBar({Key? key, required this.model, required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -70,9 +69,7 @@ class AudienceTopBar extends StatelessWidget {
                             children: [
                               Text(
                                 user.fullName ?? '',
-                                style: TextStyle(
-                                    color: ColorRes.white,
-                                    fontFamily: FontRes.fNSfUiMedium),
+                                style: TextStyle(color: ColorRes.white, fontFamily: FontRes.fNSfUiMedium),
                               ),
                               Visibility(
                                 visible: user.isVerified ?? false,
@@ -89,9 +86,7 @@ class AudienceTopBar extends StatelessWidget {
                           ),
                           Text(
                             "${user.followers ?? 0} ${LKey.followers.tr}",
-                            style: TextStyle(
-                                color: ColorRes.white.withOpacity(0.5),
-                                fontFamily: FontRes.fNSfUiMedium),
+                            style: TextStyle(color: ColorRes.white.withValues(alpha: 0.5), fontFamily: FontRes.fNSfUiMedium),
                           ),
                         ],
                       ),
@@ -130,25 +125,15 @@ class AudienceTopBar extends StatelessWidget {
                 SizedBox(
                   width: 10,
                 ),
-                Image.asset(
-                    Provider.of<MyLoading>(context, listen: true).isDark
-                        ? icLogo
-                        : icLogoLight,
-                    height: 20),
+                Image.asset(Provider.of<MyLoading>(context, listen: true).isDark ? icLogo : icLogoLight, height: 20),
                 Text(
                   ' LIVE',
-                  style: TextStyle(
-                      fontFamily: FontRes.fNSfUiSemiBold,
-                      fontSize: 16,
-                      color: ColorRes.white),
+                  style: TextStyle(fontFamily: FontRes.fNSfUiSemiBold, fontSize: 16, color: ColorRes.white),
                 ),
                 Spacer(),
                 Text(
                   "${NumberFormat.compact(locale: 'en').format(double.parse('${model.liveStreamUser?.watchingCount ?? '0'}'))} Viewers",
-                  style: TextStyle(
-                      fontFamily: FontRes.fNSfUiRegular,
-                      fontSize: 15,
-                      color: ColorRes.white),
+                  style: TextStyle(fontFamily: FontRes.fNSfUiRegular, fontSize: 15, color: ColorRes.white),
                 ),
                 Spacer(),
                 InkWell(
@@ -166,10 +151,7 @@ class AudienceTopBar extends StatelessWidget {
                       ),
                       Text(
                         "Exit",
-                        style: TextStyle(
-                            fontSize: 15,
-                            color: ColorRes.white,
-                            fontFamily: FontRes.fNSfUiMedium),
+                        style: TextStyle(fontSize: 15, color: ColorRes.white, fontFamily: FontRes.fNSfUiMedium),
                       ),
                     ],
                   ),

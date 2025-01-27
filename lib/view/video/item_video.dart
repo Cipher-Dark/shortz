@@ -71,10 +71,7 @@ class ItemVideoState extends State<ItemVideo> {
             key: Key('ke1' + (ConstRes.itemBaseUrl + widget.videoData!.postVideo!)),
             child: SizedBox.expand(
               child: FittedBox(
-                fit: (widget.videoPlayerController?.value.size.width ?? 0) <
-                        (widget.videoPlayerController?.value.size.height ?? 0)
-                    ? BoxFit.cover
-                    : BoxFit.fitWidth,
+                fit: (widget.videoPlayerController?.value.size.width ?? 0) < (widget.videoPlayerController?.value.size.height ?? 0) ? BoxFit.cover : BoxFit.fitWidth,
                 child: SizedBox(
                   width: widget.videoPlayerController?.value.size.width ?? 0,
                   height: widget.videoPlayerController?.value.size.height ?? 0,
@@ -96,13 +93,18 @@ class ItemVideoState extends State<ItemVideo> {
                 gradient: LinearGradient(
                   colors: [
                     Colors.transparent,
-                    Colors.black.withOpacity(0.1),
-                    Colors.black.withOpacity(0.2),
-                    Colors.black.withOpacity(0.3),
+                    Colors.black.withValues(alpha: 0.1),
+                    Colors.black.withValues(alpha: 0.2),
+                    Colors.black.withValues(alpha: 0.3),
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  stops: [0, 0.2, 0.6, 1],
+                  stops: [
+                    0,
+                    0.2,
+                    0.6,
+                    1
+                  ],
                 ),
               ),
             ),
@@ -123,8 +125,7 @@ class ItemVideoState extends State<ItemVideo> {
                         Visibility(
                           visible: widget.videoData!.profileCategoryName!.isNotEmpty,
                           child: Container(
-                            decoration: BoxDecoration(
-                                color: Colors.grey.shade300, borderRadius: BorderRadius.all(Radius.circular(3))),
+                            decoration: BoxDecoration(color: Colors.grey.shade300, borderRadius: BorderRadius.all(Radius.circular(3))),
                             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                             child: Text(
                               widget.videoData?.profileCategoryName ?? '',
@@ -136,8 +137,7 @@ class ItemVideoState extends State<ItemVideo> {
                           onTap: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  ProfileScreen(type: 1, userId: widget.videoData?.userId.toString() ?? '-1'),
+                              builder: (context) => ProfileScreen(type: 1, userId: widget.videoData?.userId.toString() ?? '-1'),
                             ),
                           ),
                           child: Container(
@@ -171,18 +171,14 @@ class ItemVideoState extends State<ItemVideo> {
                               text: widget.videoData?.postDescription ?? '',
                               maxLines: 3,
                               overflow: TextOverflow.ellipsis,
-                              detectedStyle: TextStyle(
-                                  fontFamily: FontRes.fNSfUiBold,
-                                  letterSpacing: 0.6,
-                                  fontSize: 13,
-                                  color: ColorRes.white),
+                              detectedStyle: TextStyle(fontFamily: FontRes.fNSfUiBold, letterSpacing: 0.6, fontSize: 13, color: ColorRes.white),
                               basicStyle: TextStyle(
                                 fontFamily: FontRes.fNSfUiRegular,
                                 letterSpacing: 0.6,
                                 fontSize: 13,
                                 color: ColorRes.white,
                                 shadows: [
-                                  Shadow(offset: Offset(1, 1), color: Colors.black.withOpacity(0.5), blurRadius: 5),
+                                  Shadow(offset: Offset(1, 1), color: Colors.black.withValues(alpha: 0.5), blurRadius: 5),
                                 ],
                               ),
                               onTap: (text) {
@@ -310,8 +306,7 @@ class ItemVideoState extends State<ItemVideo> {
                         },
                         child: Image.asset(icComment, height: 35, width: 35, color: ColorRes.white),
                       ),
-                      Text(NumberFormat.compact(locale: 'en').format(widget.videoData?.postCommentsCount ?? 0),
-                          style: TextStyle(color: ColorRes.white)),
+                      Text(NumberFormat.compact(locale: 'en').format(widget.videoData?.postCommentsCount ?? 0), style: TextStyle(color: ColorRes.white)),
                       SizedBox(height: 15),
                       InkWell(
                         onTap: () {
